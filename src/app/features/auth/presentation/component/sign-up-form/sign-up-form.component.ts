@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import { ButtonStyle } from '../../../../../core/common/components/button/button-type.enum';
 import { InputType } from '../../../../../core/common/components/textfield/input-type.enum';
-import {AuthRepositoryImpl} from '../../../data/respository/auth_repository_impl';
+import {AuthRepositoryImpl} from '../../../data/repository/auth_repository_impl';
 import { Router } from '@angular/router';
 
 @Component({

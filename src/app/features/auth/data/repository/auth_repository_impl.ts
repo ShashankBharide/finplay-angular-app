@@ -21,29 +21,33 @@ export class AuthRepositoryImpl implements AuthRepository {
 
     signInWithEmailPassword(email: string, password: string): Observable<string> {
         return new Observable<string>((observer) => {
-            this.remoteDataSource.signInWithEmailPassword(email, password).subscribe({
-                next: () => {
-                    observer.next();
-                    observer.complete();
-                },
-                error: (err) => {
-                    observer.error(new Failure(err.message, err.status));
-                }
-            });
+            this.remoteDataSource
+                .signInWithEmailPassword(email, password)
+                .subscribe({
+                    next: (token) => {
+                        observer.next(token);
+                        observer.complete();
+                    },
+                    error: (err) => {
+                        observer.error(new Failure(err.message, err.status));
+                    }
+                });
         });
     }
 
     signUpWithEmailPassword(email: string, password: string, confirmPassword: string): Observable<string> {
         return new Observable<string>((observer) => {
-            this.remoteDataSource.signUpWithEmailPassword(email, password, confirmPassword).subscribe({
-                next: () => {
-                    observer.next();
-                    observer.complete();
-                },
-                error: (err) => {
-                    observer.error(new Failure(err.message, err.status));
-                }
-            })
-        })
+            this.remoteDataSource
+                .signUpWithEmailPassword(email, password, confirmPassword)
+                .subscribe({
+                    next: (response) => {
+                        observer.next(response);
+                        observer.complete();
+                    },
+                    error: (err) => {
+                        observer.error(new Failure(err.message, err.status));
+                    }
+                });
+        });
     }
 }

@@ -43,8 +43,9 @@ export class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     signUpWithEmailPassword(email: string, password: string, confirmPassword: string): Observable<string> {
         const requestBody = {
           email: email,
-          password: password
-        }
+          password: password,
+          confirmPassword: confirmPassword,
+        };
 
         return new Observable<string>((observer) => {
           this.apiService.post<string>('users/register', requestBody).subscribe({
